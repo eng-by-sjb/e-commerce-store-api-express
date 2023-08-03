@@ -1,19 +1,10 @@
 import express from "express";
+import { getAllProductsStatic } from "../controllers/get-all-products-static.js";
 import getAllProducts from "../controllers/get-all-products.js";
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.send(
-    `<h1>
-  Products API
-  </h1>
-  <a href="/api/v1/products">
-  products
-  </a>
-  `
-  );
-});
-router.route("/api/v1/products").get(getAllProducts);
+router.route("/").get(getAllProducts);
+router.route("/static").get(getAllProductsStatic);
 
 export { router as routerHandler };
