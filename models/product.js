@@ -4,6 +4,7 @@ const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "product name must provide name"],
+    lowercase: true,
   },
   price: {
     type: Number,
@@ -12,6 +13,7 @@ const ProductSchema = new mongoose.Schema({
   company: {
     type: String,
     required: [true, "Must have a company name"],
+    lowercase: true,
     enum: {
       values: ["palace woods", "timber market", "melcom", "sika-pa"],
       message: "{value} is not supported",

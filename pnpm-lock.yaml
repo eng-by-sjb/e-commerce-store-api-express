@@ -15,13 +15,13 @@ dependencies:
     specifier: ^3.1.1
     version: 3.1.1(express@4.18.2)
   mongoose:
-    specifier: ^7.4.1
-    version: 7.4.1
+    specifier: ^7.4.2
+    version: 7.4.2
 
 packages:
 
-  /@types/node@20.4.6:
-    resolution: {integrity: sha512-q0RkvNgMweWWIvSMDiXhflGUKMdIxBo2M2tYM/0kEGDueQByFzK4KZAgu5YHGFNxziTlppNpTIBcqHQAxlfHdA==}
+  /@types/node@20.4.8:
+    resolution: {integrity: sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==}
     dev: false
 
   /@types/webidl-conversions@7.0.0:
@@ -31,7 +31,7 @@ packages:
   /@types/whatwg-url@8.2.2:
     resolution: {integrity: sha512-FtQu10RWgn3D9U4aazdwIE2yzphmTJREDqNdODHrbrZmmMqI0vMheC/6NE/J1Yveaj8H+ela+YwWTjq5PGmuhA==}
     dependencies:
-      '@types/node': 20.4.6
+      '@types/node': 20.4.8
       '@types/webidl-conversions': 7.0.0
     dev: false
 
@@ -372,8 +372,8 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongoose@7.4.1:
-    resolution: {integrity: sha512-o3E5KHHiHdaiwCJG3+9r70sncRKki71Ktf/TfXdW6myu+53rtZ56uLl5ylkQiCf60V3COJuOeekcxXVsjQ7cBA==}
+  /mongoose@7.4.2:
+    resolution: {integrity: sha512-sNolW2hyncwvWmZjIEIwAckjaSKtC1SE86zE1v2TKm3vPTRogZfBQf+3zLYYdrgrVTzoaoICieVpct9hjcn3EQ==}
     engines: {node: '>=14.20.1'}
     dependencies:
       bson: 5.4.0
