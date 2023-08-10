@@ -1,18 +1,7 @@
 import Product from "../models/product.js";
 
 const getAllProducts = async (req, res, next) => {
-  const {
-    _id,
-    name,
-    price,
-    company,
-    featured,
-    rating,
-    sort,
-    limit,
-    fields,
-    skip,
-  } = req.query;
+  const { name, company, featured, sort, fields } = req.query;
 
   //Empty object which then assigned key value pairs
   const queryObject = {};
@@ -37,15 +26,15 @@ const getAllProducts = async (req, res, next) => {
   } else {
     result = result.sort("createdAt");
   }
-  if (limit) {
-    result = result.limit(Number(limit));
-  }
   if (fields) {
     result = result.select(fields.split(",").join(" "));
   }
-  if (skip) {
-    result = result.skip(Number(skip));
-  }
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
 
   const products = await result;
 
