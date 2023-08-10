@@ -1,7 +1,7 @@
 import Product from "../models/product.js";
 
 const getAllProducts = async (req, res, next) => {
-  const { name, company, featured, sort, fields } = req.query;
+  const { name, company, featured, sort, fields, numericFilters } = req.query;
 
   //Empty object which then assigned key value pairs
   const queryObject = {};
@@ -17,12 +17,38 @@ const getAllProducts = async (req, res, next) => {
     queryObject.name = { $regex: name, $options: "i" };
   }
 
+  //numeric filters
+  if (numericFilters) {
+    const operatorMapping = {
+      ">": "$gt",
+      "<": "$lt",
+      ">=": "$gte",
+      "<=": "$lte",
+      "=": "$eq",
+    };
+
+    const regEx = /\b(<|>|>=|<=|=)\b/g;
+
+    let filters = numericFilters.replace(regEx, (match) => {
+      return `-${operatorMapping[match]}-`;
+    });
+
+    const options = ["price", "rating"];
+
+    filters = filters.split(",").forEach((element) => {
+      const [field, operator, value] = element.split("-");
+      if (options.includes(field)) {
+        queryObject[field] = { [operator]: Number(value) };
+      }
+    });
+    console.log(queryObject);
+  }
+
   let result = Product.find(queryObject);
 
   // sort is only added if sort is queried.
   if (sort) {
     result = result.sort(sort.split(",").join(" "));
-    // result = result.sort(sort.replaceAll(",", " "));
   } else {
     result = result.sort("createdAt");
   }
